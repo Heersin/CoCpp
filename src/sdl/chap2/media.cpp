@@ -33,7 +33,7 @@ bool Create_default_window(
         height,
         SDL_WINDOW_SHOWN);
     
-    if(&window == NULL)
+    if(window == NULL)
     {
         Log_SDL_error();
         return false;
@@ -41,7 +41,7 @@ bool Create_default_window(
 
     surface = SDL_GetWindowSurface(window);
     
-    if(&surface == NULL)
+    if(surface == NULL)
     {
         Log_SDL_error();
         return false;
@@ -77,8 +77,8 @@ void Log_SDL_error()
 
 int main()
 {
-    SDL_Window base_window;
-    SDL_Surface base_surface;
+    SDL_Window *base_window;
+    SDL_Surface *base_surface;
     // init 
     if(!Init_SDL_lib())
     {
@@ -102,7 +102,7 @@ int main()
     if(!Load_media())
     {
         printf("Failed to load image\n");
-        SDL_DestroyWindow( &base_window );
+        SDL_DestroyWindow( base_window );
         Close_SDL_lib();
         return -1;
     }
@@ -112,7 +112,7 @@ int main()
     SDL_Delay(2000);
 
     // close and clean
-    SDL_DestroyWindow( &base_window );
+    SDL_DestroyWindow( base_window );
     Close_SDL_lib();
     return 0;
 }
