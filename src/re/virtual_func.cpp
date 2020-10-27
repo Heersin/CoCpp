@@ -4,7 +4,7 @@ using namespace std;
 class Animal
 {
   public:
-    int eat() {
+    virtual int eat() {
       return 0x0;
     }
 };
