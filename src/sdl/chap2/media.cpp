@@ -109,7 +109,9 @@ int main()
 
     SDL_BlitSurface(gHelloWorld, NULL, base_surface, NULL);
     SDL_UpdateWindowSurface(base_window);
-    SDL_Delay(2000);
+    // Perform Bad on KDE (x11 based)
+    // which showed an empty window
+    // SDL_Delay(2000);
 
     // close and clean
     SDL_DestroyWindow( base_window );
