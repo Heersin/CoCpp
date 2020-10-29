@@ -106,6 +106,7 @@ bool Load_media()
 
 // sub function of Load media
 // load bmp by a given name
+// add convert feature
 SDL_Surface *Load_surface(std::string path)
 {
     SDL_Surface *loaded_surface = SDL_LoadBMP(path.c_str());
@@ -115,7 +116,18 @@ SDL_Surface *Load_surface(std::string path)
         return NULL;
     }
 
-    return loaded_surface;
+    SDL_PixelFormat *format = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA32);
+    SDL_Surface *optimized_surface = SDL_ConvertSurface( loaded_surface, format, 0);
+    SDL_FreeFormat(format);
+    if (optimized_surface == NULL)
+    {
+        Log_SDL_error();
+        SDL_FreeSurface(loaded_surface);
+        return NULL;
+    }
+
+    SDL_FreeSurface(loaded_surface);
+    return optimized_surface;
 }
 
 // Free media and shut down SDL
