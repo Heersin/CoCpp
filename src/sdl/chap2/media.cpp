@@ -19,13 +19,13 @@ bool Init_SDL_lib()
 
 // Create Window
 bool Create_default_window(
-    SDL_Window *window,
-    SDL_Surface *surface,
+    SDL_Window **pwindow,
+    SDL_Surface **psurface,
     int width,
     int height,
     const char* title)
 {
-    window = SDL_CreateWindow(
+    *pwindow = SDL_CreateWindow(
         title, 
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
@@ -33,15 +33,15 @@ bool Create_default_window(
         height,
         SDL_WINDOW_SHOWN);
     
-    if(window == NULL)
+    if(*pwindow == NULL)
     {
         Log_SDL_error();
         return false;
     }
 
-    surface = SDL_GetWindowSurface(window);
+    *psurface = SDL_GetWindowSurface(*pwindow);
     
-    if(surface == NULL)
+    if(*psurface == NULL)
     {
         Log_SDL_error();
         return false;
@@ -53,7 +53,7 @@ bool Create_default_window(
 // Loads media
 bool Load_media()
 {
-    gHelloWorld = SDL_LoadBMP("rsrc/02.bmp");
+    gHelloWorld = SDL_LoadBMP("02.bmp");
     if(gHelloWorld == NULL){
         Log_SDL_error();
         return false;
@@ -79,6 +79,9 @@ int main()
 {
     SDL_Window *base_window;
     SDL_Surface *base_surface;
+
+    base_window = NULL;
+    base_surface = NULL;
     // init 
     if(!Init_SDL_lib())
     {
@@ -88,8 +91,8 @@ int main()
 
     // create our window
     if(!Create_default_window(
-                base_window,
-                base_surface,
+                &base_window,
+                &base_surface,
                 SCREEN_WIDTH,
                 SCREEN_HEIGHT,
                 "SDL Chap2"))
@@ -107,11 +110,24 @@ int main()
         return -1;
     }
 
-    SDL_BlitSurface(gHelloWorld, NULL, base_surface, NULL);
-    SDL_UpdateWindowSurface(base_window);
+
     // Perform Bad on KDE (x11 based)
     // which showed an empty window
     // SDL_Delay(2000);
+
+
+    bool quit = false;
+    SDL_Event e;
+
+    while(!quit)
+    {
+        while(SDL_PollEvent(&e) != 0)
+            if (e.type == SDL_QUIT)
+                quit = true;
+        
+        SDL_BlitSurface(gHelloWorld, NULL, base_surface, NULL);
+        SDL_UpdateWindowSurface(base_window);
+    }
 
     // close and clean
     SDL_DestroyWindow( base_window );
