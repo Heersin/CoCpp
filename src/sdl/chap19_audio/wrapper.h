@@ -72,17 +72,5 @@ class ButtonWrapper
 
 };
 
-// >>>>>>>>>>>>>>> Key Wrapper <<<<<
-class KeyWrapper
-{
-    public:
-        KeyWrapper();
-        ~KeyWrapper();
-        void handleKey();
-    private:
-        // this function will return a pointer to an SDL lib internal array
-        // do not free it manually
-        const Uint8 *key_states;
-};
 
 #endif

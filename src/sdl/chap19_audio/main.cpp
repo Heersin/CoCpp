@@ -69,7 +69,17 @@ int main()
 // >>>>>>>>>>>>>>>> Main Event Loop <<<<<<<<<<<<<<<<<<<<<<,
     bool quit = false;
     SDL_Event e;
-    KeyWrapper unique_key_handler;
+    KeyHandler unique_key_handler;
+    MusicPlayer unique_player(1,3);
+
+    // test music
+    unique_player.loadMusic("rsrc/music.wav");
+    unique_player.loadMusicChunk("rsrc/0.wav");
+    unique_player.loadMusicChunk("rsrc/1.wav");
+    unique_player.loadMusicChunk("rsrc/2.wav");
+
+    // play music 0
+    unique_player.playMusic(0);
 
     // load spirite
     sprite.procSprite(

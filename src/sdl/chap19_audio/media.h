@@ -9,15 +9,19 @@
 #include <stdio.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 #include <iostream>
 #include "utils.h"
 #include "wrapper.h"
 #include "element.h"
+#include "key_event.h"
+#include "audio.h"
 
 // MACRO
 #define SDL_LIB_MAIN_INIT 1
 #define SDL_LIB_IMG_INIT 2
 #define SDL_LIB_TTF_INIT 4
+#define SDL_LIB_MIXER_INIT 8
 #define SDL_LIB_UNINIT 0
 
 // Starts Up SDL

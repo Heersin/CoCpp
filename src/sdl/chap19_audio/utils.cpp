@@ -42,3 +42,8 @@ void Log_SDL_TTF_error()
 {
     printf("SDL TTF Error : %s \n", TTF_GetError());
 }
+
+void Log_SDL_MIXER_error()
+{
+    printf("SDL Mixer Error : %s\n", Mix_GetError());
+}

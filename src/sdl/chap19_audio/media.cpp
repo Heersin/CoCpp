@@ -11,7 +11,7 @@ bool Init_SDL_lib()
     SDL_LIB_INIT_STATUS = SDL_LIB_UNINIT;
 
     // init SDL
-    if(SDL_Init(SDL_INIT_VIDEO) < 0)
+    if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
     {
         Log_SDL_error();
         return false;
@@ -38,6 +38,14 @@ bool Init_SDL_lib()
     // set status
     SDL_LIB_INIT_STATUS |= SDL_LIB_TTF_INIT;
 
+    // init Mixer
+    if( Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    {
+        Log_SDL_MIXER_error();
+        return false;
+    }
+    SDL_LIB_INIT_STATUS |= SDL_LIB_MIXER_INIT;
+
     // set hint
     if( !SDL_SetHint( SDL_HINT_RENDER_SCALE_QUALITY, "1" ) )
 	{
@@ -58,6 +66,8 @@ void Close_SDL_lib()
         IMG_Quit();
     if ( (SDL_LIB_INIT_STATUS & SDL_LIB_TTF_INIT) == SDL_LIB_TTF_INIT)
         TTF_Quit();
+    if ( (SDL_LIB_INIT_STATUS & SDL_LIB_MIXER_INIT) == SDL_LIB_MIXER_INIT )
+        Mix_Quit();
 
     SDL_Quit();
 }
