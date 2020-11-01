@@ -34,5 +34,4 @@ class TextureWrapper
         int height;
 };
 
-
 #endif

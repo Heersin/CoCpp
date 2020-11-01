@@ -11,6 +11,7 @@
 #include <iostream>
 #include "utils.h"
 #include "wrapper.h"
+#include "element.h"
 
 // MACRO
 #define SDL_LIB_MAIN_INIT 1

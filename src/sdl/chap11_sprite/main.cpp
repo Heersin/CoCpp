@@ -17,6 +17,8 @@ int main()
     // Texture Wrapper
     TextureWrapper stage;
     TextureWrapper role;
+    // static 
+    SpriteFactory sprite;
 
     // init 
     if(!Init_SDL_lib())
@@ -52,6 +54,13 @@ int main()
     bool quit = false;
     SDL_Event e;
 
+    sprite.procSprite(
+        &base_render,
+        "rsrc/uni.png",
+        2,
+        3
+    );
+
     while(!quit)
     {
         while(SDL_PollEvent(&e) != 0)
@@ -74,6 +83,9 @@ int main()
             0
             );
 
+        sprite.renderClip(&base_render, 0, 0, 1, 2);
+        // render clip
+        
         SDL_RenderPresent(base_render);
     }
 
@@ -81,6 +93,7 @@ int main()
     // clean
     stage.freeTexture();
     role.freeTexture();
+    sprite.freeSprite();
     SDL_DestroyRenderer( base_render );
     SDL_DestroyWindow( base_window );
 
