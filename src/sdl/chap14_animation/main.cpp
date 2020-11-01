@@ -95,7 +95,8 @@ int main()
         );
 
         // render animation
-        sprite.renderClip(&base_render, SCREEN_WIDTH / 2, 0, 0, frame % 8);
+        // animation angle is 270
+        sprite.renderClip(&base_render, SCREEN_WIDTH / 2, 0, 0, frame % 8, 270);
 
         // render clip
         SDL_RenderPresent(base_render);

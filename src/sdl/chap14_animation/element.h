@@ -28,6 +28,7 @@ class SpriteFactory
         SDL_Rect *getClip(int row, int col);
         // render clip
         bool renderClip(SDL_Renderer **pr, int x, int y, int row, int col);
+        bool renderClip(SDL_Renderer **pr, int x, int y, int row, int col, double angle);
 
         // getter
         int getWidth();

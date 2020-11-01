@@ -129,6 +129,23 @@ bool SpriteFactory::renderClip(SDL_Renderer **pr, int x, int y, int row, int col
         return true;
     return false;
 }
+bool SpriteFactory::renderClip(SDL_Renderer **pr, int x, int y, int row, int col, double angle)
+{
+    SDL_Rect render_quad = {x, y, 0, 0};
+
+    SDL_RendererFlip flip_type = SDL_FLIP_NONE;
+    SDL_Point* center = NULL; // default center
+    double degree = angle;
+
+    render_quad.w = clip_w;
+    render_quad.h = clip_h;
+
+    int result = SDL_RenderCopyEx(*pr, texture, clips[row * clips_col + col], &render_quad, degree, center, flip_type);
+    if (result == 0)
+        return true;
+    return false;
+
+}
 
 int SpriteFactory::getWidth()
 {
