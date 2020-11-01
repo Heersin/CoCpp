@@ -62,6 +62,19 @@ int main()
         9
     );
 
+    // Clear Screen
+    SDL_SetRenderDrawColor(base_render, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(base_render);
+    
+    // load stage
+    // render background
+    stage.loadFromFile(&base_render, "rsrc/night.png");
+
+    // load role
+    // render role
+    role.loadFromFile(&base_render, "rsrc/kizuna.png");
+
+
     int frame = 0;
 
     while(!quit)
@@ -70,25 +83,19 @@ int main()
             if (e.type == SDL_QUIT)
                 quit = true;
 
-        // Clear Screen
-        SDL_SetRenderDrawColor(base_render, 0xFF, 0xFF, 0xFF, 0xFF);
-        SDL_RenderClear(base_render);
-
-        // render background
-        stage.loadFromFile(&base_render, "rsrc/night.png");
+        // render stage
         stage.render(&base_render, 0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
         // render role
-        role.loadFromFile(&base_render, "rsrc/kizuna.png");
         role.setAlpha(200);
         role.render(
             &base_render, 
             SCREEN_WIDTH / 10,
             0
-            );
+        );
 
         // render animation
-        sprite.renderClip(&base_render, SCREEN_WIDTH / 2, 0, 0, frame % 7);
+        sprite.renderClip(&base_render, SCREEN_WIDTH / 2, 0, 0, frame % 8);
 
         // render clip
         SDL_RenderPresent(base_render);
