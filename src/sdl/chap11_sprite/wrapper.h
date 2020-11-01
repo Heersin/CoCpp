@@ -25,6 +25,8 @@ class TextureWrapper
 
         int getWidth();
         int getHeight();
+
+        void setAlpha(Uint8 a);
     
     private:
         SDL_Texture* texture;
@@ -32,6 +34,7 @@ class TextureWrapper
         // image dimension
         int width;
         int height;
+        Uint8 alpha;
 };
 
 #endif

@@ -11,6 +11,7 @@ SpriteFactory::SpriteFactory()
     clips_col = 0;
     clips_row = 0;
     cnt = 0;
+    alpha = 255;
 }
 
 SpriteFactory::~SpriteFactory()
@@ -69,8 +70,6 @@ bool SpriteFactory::procSprite(SDL_Renderer **pr, std::string path, int n_row, i
 
     }
 
-
-
     // update class
     width = img->w;
     height = img->h;
@@ -108,6 +107,7 @@ void SpriteFactory::freeSprite()
         clips_row = 0;
         clips_col = 0;
         cnt = 0;
+        alpha = 255;
     }
 }
 
@@ -138,7 +138,7 @@ int  SpriteFactory::getHeight()
 {
     return height;
 }
-int  SpriteFactory::getClipWidith()
+int  SpriteFactory::getClipWidth()
 {
     return clip_w;
 }
@@ -149,4 +149,9 @@ int  SpriteFactory::getClipHeight()
 int  SpriteFactory::getTotalNum()
 {
     return cnt;
+}
+void SpriteFactory::setAlpha(Uint8 a)
+{
+    alpha = a;
+    SDL_SetTextureAlphaMod( texture, alpha );
 }

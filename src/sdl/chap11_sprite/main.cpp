@@ -77,15 +77,16 @@ int main()
 
         // render role
         role.loadFromFile(&base_render, "rsrc/kizuna.png");
+        role.setAlpha(200);
         role.render(
             &base_render, 
             SCREEN_WIDTH / 10,
             0
             );
 
-        sprite.renderClip(&base_render, 0, 0, 1, 2);
+        sprite.renderClip(&base_render, SCREEN_WIDTH - sprite.getClipWidth(), 0, 0, 0);
+        sprite.renderClip(&base_render, 0, 0, 0, 2);
         // render clip
-        
         SDL_RenderPresent(base_render);
     }
 

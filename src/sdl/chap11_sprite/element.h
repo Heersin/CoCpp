@@ -32,9 +32,11 @@ class SpriteFactory
         // getter
         int getWidth();
         int getHeight();
-        int getClipWidith();
+        int getClipWidth();
         int getClipHeight();
         int getTotalNum();
+
+        void setAlpha(Uint8 a);
 
     private:
         SDL_Rect **clips;
@@ -47,6 +49,7 @@ class SpriteFactory
         int cnt;
         int clips_row;
         int clips_col;
+        int alpha;
 };
 
 #endif

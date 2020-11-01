@@ -4,6 +4,7 @@ TextureWrapper::TextureWrapper()
     texture = NULL;
     width = 0;
     height = 0;
+    alpha = 255;
 }
 
 TextureWrapper::~TextureWrapper()
@@ -57,6 +58,7 @@ void TextureWrapper::freeTexture()
         texture = NULL;
         width = 0;
         height = 0;
+        alpha = 255;
     }
 }
 
@@ -87,4 +89,10 @@ int TextureWrapper::getWidth()
 int TextureWrapper::getHeight()
 {
     return height;
+}
+
+void TextureWrapper::setAlpha(Uint8 a)
+{
+    alpha = a;
+    SDL_SetTextureAlphaMod( texture, alpha );
 }
