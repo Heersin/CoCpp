@@ -10,6 +10,7 @@ enum TTF_COLOR{
     TTF_COLOR_BLACK,
     TTF_COLOR_WHITE
 };
+
 class TextureWrapper
 {
     public:
@@ -69,6 +70,19 @@ class ButtonWrapper
         int w;
         int h;
 
+};
+
+// >>>>>>>>>>>>>>> Key Wrapper <<<<<
+class KeyWrapper
+{
+    public:
+        KeyWrapper();
+        ~KeyWrapper();
+        void handleKey();
+    private:
+        // this function will return a pointer to an SDL lib internal array
+        // do not free it manually
+        const Uint8 *key_states;
 };
 
 #endif

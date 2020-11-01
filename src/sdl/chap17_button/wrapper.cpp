@@ -205,7 +205,6 @@ void ButtonWrapper::handleEvent(SDL_Event *e)
 }
 
 
-// override father class
 void ButtonWrapper::renderBySprite(SDL_Renderer **pr, SpriteFactory *psprite, int row, int col, double angle)
 {
     psprite->renderClip(pr, postion.x, postion.y, row, col, angle);
@@ -220,3 +219,41 @@ int ButtonWrapper::getHeight()
 {
     return h;
 }
+
+
+// >>>>>>>> Key <<<<<<<<
+KeyWrapper::KeyWrapper()
+{
+    key_states = NULL;
+}
+
+KeyWrapper::~KeyWrapper()
+{
+    key_states = NULL;
+}
+
+void KeyWrapper::handleKey()
+{
+    key_states = SDL_GetKeyboardState( NULL );
+    
+    if( key_states[ SDL_SCANCODE_UP ] )
+    {
+        printf("UP KEY\n");
+    }
+    else if( key_states[ SDL_SCANCODE_DOWN ] )
+    {
+        printf("DOWN KEY\n");
+    }
+    else if( key_states[ SDL_SCANCODE_LEFT ] )
+    {
+        printf("LEFT KEY\n");
+    }
+    else if( key_states[ SDL_SCANCODE_RIGHT ] )
+    {
+        printf("RIGHT KEY\n");
+    }
+    else
+    {
+    }
+}
+

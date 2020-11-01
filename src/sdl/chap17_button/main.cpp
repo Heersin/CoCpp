@@ -69,6 +69,7 @@ int main()
 // >>>>>>>>>>>>>>>> Main Event Loop <<<<<<<<<<<<<<<<<<<<<<,
     bool quit = false;
     SDL_Event e;
+    KeyWrapper unique_key_handler;
 
     // load spirite
     sprite.procSprite(
@@ -113,6 +114,9 @@ int main()
             return_button.handleEvent(&e);
         }
 
+        // after poll , the key state will be refresh
+        // so put key here
+        unique_key_handler.handleKey();
 
         // render stage
         stage.render(&base_render, 0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
