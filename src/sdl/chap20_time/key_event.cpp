@@ -31,7 +31,27 @@ void KeyHandler::handleKey()
     {
         printf("RIGHT KEY\n");
     }
-    else
+    else if( key_states[SDL_SCANCODE_P] )
     {
+        if (global_timer.isPaused())
+        {
+            global_timer.resume();
+            printf("Resume \n");
+        }
+        else
+        {
+            global_timer.pause();
+            printf("Paused\n");
+        }
     }
+    else if( key_states[SDL_SCANCODE_S])
+    {
+        // switch between start and stop
+        if ( global_timer.isStarted() )
+            global_timer.stop();
+        else
+            global_timer.start();
+    }
+    else
+        return;
 }

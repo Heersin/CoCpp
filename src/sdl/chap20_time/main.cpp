@@ -1,5 +1,6 @@
 #include "media.h"
 
+Timer global_timer;
 // >>>>>>>>>>>>>> Main Part <<<<<<<<<<<<<<<<<
 int main()
 {
@@ -20,12 +21,17 @@ int main()
     TextureWrapper stage;
     TextureWrapper role;
     TextureWrapper text_line;
+    TextureWrapper time_panel;
+
     // static 
     SpriteFactory sprite;
     SpriteFactory button_sprite;
 
     // button
     ButtonWrapper return_button(160, 60);
+
+    // string
+    std::stringstream time_text;
 
     // init 
     if(!Init_SDL_lib())
@@ -146,6 +152,12 @@ int main()
             SCREEN_HEIGHT / 5
         );
 
+        // render time panel
+        time_text.str("");
+        time_text << "Stop Watcher Walk Time : " << (global_timer.getTicks() / 1000.f );
+        time_panel.loadFromText(&base_render, &base_font, time_text.str().c_str(), TTF_COLOR_BLACK);
+        time_panel.render(&base_render, SCREEN_WIDTH / 5 * 2, 0);
+
         // render animation
         // animation angle is 270
         sprite.renderClip(&base_render, SCREEN_WIDTH / 2, 0, 0, frame % 8, 270);
@@ -173,6 +185,7 @@ int main()
     stage.freeTexture();
     role.freeTexture();
     text_line.freeTexture();
+    time_panel.freeTexture();
     sprite.freeSprite();
     button_sprite.freeSprite();
     SDL_DestroyRenderer( base_render );

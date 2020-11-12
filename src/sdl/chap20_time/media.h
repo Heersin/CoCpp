@@ -11,11 +11,14 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 #include <iostream>
+#include <string.h>
+#include <sstream>
 #include "utils.h"
 #include "wrapper.h"
 #include "element.h"
 #include "key_event.h"
 #include "audio.h"
+#include "timer.h"
 
 // MACRO
 #define SDL_LIB_MAIN_INIT 1
