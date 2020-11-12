@@ -55,3 +55,28 @@ void KeyHandler::handleKey()
     else
         return;
 }
+
+// >>>>> event key handler <<<<<<
+void EventKeyHandler::handleKey(SDL_event *e)
+{
+    switch(e->type)
+    {
+        case SDL_KEYDOWN:
+            switch(e->key.keysym.sym)
+            {
+                case SDLK_LEFT:
+                    printf("left\n");
+                    break;
+                case SDLK_RIGHT:
+                    printf("right\n");
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case SDL_KEYUP:
+            break;
+        default:
+            break;
+    }
+}

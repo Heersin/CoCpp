@@ -21,5 +21,11 @@ class KeyHandler
         const Uint8 *key_states;
 };
 
+// >>>>>>>>>>>>> Event Based Key Handler <<<<<<<<<<<<
+class EventKeyHandler
+{
+    public:
+        void handleKey(SDL_Event *e);
+}
 
 #endif
