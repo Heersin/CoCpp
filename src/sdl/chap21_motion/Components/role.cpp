@@ -23,19 +23,19 @@ void Role::handleEvent( SDL_event &e )
         switch(e.key.keysym.sym)
         {
             case SDLK_UP:
-                vel_y -= Role_VEL;
+                vel_y -= MOVE_DELTA;
                 break;
             
             case SDLK_DOWN:
-                vel_y += Role_VEL;
+                vel_y += MOVE_DELTA;
                 break;
 
             case SDLK_RIGHT:
-                vel_x += Role_VEL;
+                vel_x += MOVE_DELTA;
                 break;
             
             case SDLK_LEFT:
-                vel_x -= Role_VEL;
+                vel_x -= MOVE_DELTA;
                 break;
         }
     }
