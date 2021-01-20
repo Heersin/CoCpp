@@ -29,6 +29,13 @@ class Role
         // show the dot on the screen
         void render();
 
+
+        // getter
+        int getX();
+        int getY();
+        int getW();
+        int getH();
+
     private:
         int x_pos, y_pos;
         int vel_x, vel_y;

@@ -19,6 +19,7 @@
 #include "base_com/audio.h"
 #include "base_com/timer.h"
 #include "components/role.h"
+#include "components/focusBackground.h"
 
 // MACRO
 #define SDL_LIB_MAIN_INIT 1

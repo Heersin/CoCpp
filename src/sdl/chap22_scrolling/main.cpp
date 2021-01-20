@@ -18,7 +18,6 @@ int main()
     base_font = NULL;
 
     // Texture Wrapper
-    TextureWrapper stage;
     TextureWrapper text_line;
     TextureWrapper time_panel;
 
@@ -107,7 +106,8 @@ int main()
     
     // load stage
     // render background
-    stage.loadFromFile(&base_render, "rsrc/night.png");
+    //stage.loadFromFile(&base_render, "rsrc/night.png");
+    FocusBg stage(&base_render, "rsrc/night.png");
 
     // load role
     // render role
@@ -133,7 +133,7 @@ int main()
         // unique_key_handler.handleKey();
 
         // render stage
-        stage.render(&base_render, 0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        stage.focus_render(role);
 
         // render role
         role.render();
@@ -176,7 +176,6 @@ int main()
 
     // close and clean
     // clean
-    stage.freeTexture();
     text_line.freeTexture();
     time_panel.freeTexture();
     sprite.freeSprite();

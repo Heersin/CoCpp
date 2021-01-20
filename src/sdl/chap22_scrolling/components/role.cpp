@@ -73,3 +73,21 @@ void Role::render()
 {
     texture.render(base_renderer_p, x_pos, y_pos, ROLE_WIDTH, ROLE_HEIGHT);
 }
+
+
+int Role::getX()
+{
+    return x_pos;
+}
+int Role::getY()
+{
+    return y_pos;
+}
+int Role::getW()
+{
+    return ROLE_HEIGHT;
+}
+int Role::getH()
+{
+    return ROLE_WIDTH;
+}
