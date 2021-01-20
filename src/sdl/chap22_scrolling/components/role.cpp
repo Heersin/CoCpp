@@ -39,7 +39,6 @@ void Role::handleEvent( SDL_Event &e )
                 break;
         }
 
-        printf("velocity key repeat ? %d\n", e.key.repeat);
         move();
     }
 
@@ -66,7 +65,6 @@ void Role::move()
     if ((y_pos < 0) || (y_pos + ROLE_HEIGHT > SCREEN_HEIGHT))
         y_pos -= vel_y;
 
-    printf("pos [%d, %d]\n", x_pos, y_pos);
 }
 
 void Role::render()
