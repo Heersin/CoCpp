@@ -1,5 +1,5 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = media.cpp wrapper.cpp utils.cpp element.cpp audio.cpp key_event.cpp main.cpp timer.cpp
+OBJS = media.cpp wrapper.cpp utils.cpp element.cpp audio.cpp main.cpp timer.cpp components/role.cpp
 
 #CC specifies which compiler we're using
 CC = g++

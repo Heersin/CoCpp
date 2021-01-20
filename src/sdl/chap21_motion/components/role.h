@@ -1,7 +1,9 @@
 #ifndef _H_ROLE
 #define _H_ROLE
 #include "../wrapper.h"
-
+#include <SDL2/SDL.h>
+#include <iostream>
+#include <cstring>
 class Role
 {
     public:
@@ -13,13 +15,13 @@ class Role
         static const int MOVE_DELTA = 10;
 
         // constructor
-        Role();
+        Role(SDL_Renderer **pr, std::string img_path);
 
         // deconstructor
         ~Role();
 
         // handle key press
-        void handleEvent( SDL_event &e );
+        void handleEvent( SDL_Event &e );
 
         // functionalities
         void move();
@@ -33,6 +35,6 @@ class Role
 
         TextureWrapper texture;
         SDL_Renderer **base_renderer_p;
-}
+};
 
 #endif

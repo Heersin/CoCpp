@@ -16,9 +16,9 @@ Role::~Role()
     texture.freeTexture();
 }
 
-void Role::handleEvent( SDL_event &e )
+void Role::handleEvent( SDL_Event &e )
 {
-    if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
+    if ((e.type == SDL_KEYDOWN) && (e.key.repeat == 0))
     {
         switch(e.key.keysym.sym)
         {
@@ -38,7 +38,16 @@ void Role::handleEvent( SDL_event &e )
                 vel_x -= MOVE_DELTA;
                 break;
         }
+
+        printf("velocity key repeat ? %d\n", e.key.repeat);
+        move();
     }
+
+    vel_x = 0;
+    vel_y = 0;
+    move();
+
+    
 }
 
 void Role::move()
@@ -46,8 +55,8 @@ void Role::move()
     // should set up a global var file I think
     int SCREEN_HEIGHT = 720;
     int SCREEN_WIDTH = 1280;
-    x_pos += vel_x;
 
+    x_pos += vel_x;
     // bound limit
     if ((x_pos < 0) || (x_pos + ROLE_WIDTH > SCREEN_WIDTH))
         x_pos -= vel_x;
@@ -56,6 +65,8 @@ void Role::move()
     y_pos += vel_y;
     if ((y_pos < 0) || (y_pos + ROLE_HEIGHT > SCREEN_HEIGHT))
         y_pos -= vel_y;
+
+    printf("pos [%d, %d]\n", x_pos, y_pos);
 }
 
 void Role::render()

@@ -19,7 +19,6 @@ int main()
 
     // Texture Wrapper
     TextureWrapper stage;
-    TextureWrapper role;
     TextureWrapper text_line;
     TextureWrapper time_panel;
 
@@ -75,7 +74,6 @@ int main()
 // >>>>>>>>>>>>>>>> Main Event Loop <<<<<<<<<<<<<<<<<<<<<<,
     bool quit = false;
     SDL_Event e;
-    KeyHandler unique_key_handler;
     MusicPlayer unique_player(1,3);
 
     // test music
@@ -113,7 +111,7 @@ int main()
 
     // load role
     // render role
-    role.loadFromFile(&base_render, "rsrc/kizuna.png");
+    Role role(&base_render, "rsrc/kizuna.png");
 
     // add an text
     text_line.loadFromText(&base_render, &base_font, "Night Class Room", TTF_COLOR_BLACK); 
@@ -132,18 +130,14 @@ int main()
 
         // after poll , the key state will be refresh
         // so put key here
-        unique_key_handler.handleKey();
+        // unique_key_handler.handleKey();
 
         // render stage
         stage.render(&base_render, 0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
         // render role
-        role.setAlpha(200);
-        role.render(
-            &base_render, 
-            SCREEN_WIDTH / 10,
-            0
-        );
+        role.render();
+        role.handleEvent(e);
 
         // render text
         text_line.render(
@@ -183,7 +177,6 @@ int main()
     // close and clean
     // clean
     stage.freeTexture();
-    role.freeTexture();
     text_line.freeTexture();
     time_panel.freeTexture();
     sprite.freeSprite();

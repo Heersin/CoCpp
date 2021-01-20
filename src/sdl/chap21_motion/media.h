@@ -16,9 +16,9 @@
 #include "utils.h"
 #include "wrapper.h"
 #include "element.h"
-#include "key_event.h"
 #include "audio.h"
 #include "timer.h"
+#include "components/role.h"
 
 // MACRO
 #define SDL_LIB_MAIN_INIT 1
