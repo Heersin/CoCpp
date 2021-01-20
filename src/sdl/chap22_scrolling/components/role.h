@@ -1,6 +1,6 @@
 #ifndef _H_ROLE
 #define _H_ROLE
-#include "../wrapper.h"
+#include "../base_com/wrapper.h"
 #include <SDL2/SDL.h>
 #include <iostream>
 #include <cstring>

@@ -13,11 +13,11 @@
 #include <iostream>
 #include <string.h>
 #include <sstream>
-#include "utils.h"
-#include "wrapper.h"
-#include "element.h"
-#include "audio.h"
-#include "timer.h"
+#include "base_com/utils.h"
+#include "base_com/wrapper.h"
+#include "base_com/element.h"
+#include "base_com/audio.h"
+#include "base_com/timer.h"
 #include "components/role.h"
 
 // MACRO
