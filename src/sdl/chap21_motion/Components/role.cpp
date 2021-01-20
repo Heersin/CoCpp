@@ -11,6 +11,11 @@ Role::Role(SDL_Renderer **global_render, std::string img_path) : texture()
     texture.loadFromFile(base_renderer_p, img_path);
 }
 
+Role::~Role()
+{
+    texture.freeTexture();
+}
+
 void Role::handleEvent( SDL_event &e )
 {
     if (e.type == SDL_KEYDOWN && e.key.repeat == 0)
