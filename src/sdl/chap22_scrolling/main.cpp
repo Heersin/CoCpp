@@ -22,7 +22,7 @@ int main()
     TextureWrapper time_panel;
 
     // static 
-    SpriteFactory sprite;
+    //SpriteFactory sprite;
     SpriteFactory button_sprite;
 
     // button
@@ -85,12 +85,14 @@ int main()
     unique_player.playMusic(0);
 
     // load spirite
+    /*
     sprite.procSprite(
         &base_render,
         "rsrc/ani.png",
         1,
         9
     );
+    */
 
     // load button sprite
     button_sprite.procSprite(
@@ -154,7 +156,7 @@ int main()
 
         // render animation
         // animation angle is 270
-        sprite.renderClip(&base_render, SCREEN_WIDTH / 2, 0, 0, frame % 8, 270);
+        //sprite.renderClip(&base_render, SCREEN_WIDTH / 2, 0, 0, frame % 8, 270);
 
         // Render button
         // set button in left
@@ -171,6 +173,9 @@ int main()
 
         // render clip
         SDL_RenderPresent(base_render);
+            // Clear Screen
+        SDL_SetRenderDrawColor(base_render, 0xFF, 0xFF, 0xFF, 0xFF);
+        SDL_RenderClear(base_render);
         ++frame;
     }
 
@@ -178,7 +183,7 @@ int main()
     // clean
     text_line.freeTexture();
     time_panel.freeTexture();
-    sprite.freeSprite();
+    //sprite.freeSprite();
     button_sprite.freeSprite();
     SDL_DestroyRenderer( base_render );
     SDL_DestroyWindow( base_window );

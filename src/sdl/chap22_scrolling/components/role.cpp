@@ -1,8 +1,8 @@
 #include "role.h"
 Role::Role(SDL_Renderer **global_render, std::string img_path) : texture()
 {
-    x_pos = 0;
-    y_pos = 0;
+    x_pos = 200;
+    y_pos = 200;
 
     vel_x = 0;
     vel_y = 0;

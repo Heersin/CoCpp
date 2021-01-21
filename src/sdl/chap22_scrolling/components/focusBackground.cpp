@@ -15,8 +15,8 @@ void FocusBg::focus_render(Role& singleton_role)
 {
     int SCREEN_HEIGHT = 720;
     int SCREEN_WIDTH = 1280;
-    const int DEFAULT_CAMERA_WIDTH = 50;
-    const int DEFAULT_CAMERA_HEIGHT = 30;
+    const int DEFAULT_CAMERA_WIDTH = 200;
+    const int DEFAULT_CAMERA_HEIGHT = 200;
 
     int camera_x, camera_y;
 
@@ -41,5 +41,5 @@ void FocusBg::focus_render(Role& singleton_role)
         camera_y = SCREEN_HEIGHT - DEFAULT_CAMERA_HEIGHT;
 
     // render
-    scroll.render(base_renderer_p, camera_x, camera_y, DEFAULT_CAMERA_WIDTH, DEFAULT_CAMERA_HEIGHT);
+    scroll.renderPart(base_renderer_p, camera_x, camera_y, DEFAULT_CAMERA_WIDTH, DEFAULT_CAMERA_HEIGHT);
 }

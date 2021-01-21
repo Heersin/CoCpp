@@ -127,6 +127,15 @@ bool TextureWrapper::render(SDL_Renderer **pr, int x, int y, int w, int h)
     return false;
 }
 
+bool TextureWrapper::renderPart(SDL_Renderer **pr, int x, int y, int w, int h)
+{
+    SDL_Rect renderQuad = {x, y, w, h};
+    int result = SDL_RenderCopy( *pr, texture, &renderQuad, NULL );
+    if (result == 0)
+        return true;
+    return false;
+}
+
 int TextureWrapper::getWidth()
 {
     return width;

@@ -30,6 +30,7 @@ class TextureWrapper
         // render somthing in (x,y) pos
         bool render(SDL_Renderer **pr, int x, int y);
         bool render(SDL_Renderer **pr, int x, int y, int w, int h);
+        bool renderPart(SDL_Renderer **pr, int x, int y, int w, int h);
 
         int getWidth();
         int getHeight();
