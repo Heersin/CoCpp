@@ -76,17 +76,14 @@ void WindowWrapper::handleEvent(SDL_Event& e)
 
             case SDL_WINDOWEVENT_MINIMIZED:
                 minimized = true;
-                fullscreen = false;
                 break;
             
             case SDL_WINDOWEVENT_MAXIMIZED:
                 minimized = false;
-                fullscreen = true;
                 break;
             
             case SDL_WINDOWEVENT_RESTORED:
                 minimized = false;
-                fullscreen = false;
                 break;
         }
 
@@ -95,22 +92,6 @@ void WindowWrapper::handleEvent(SDL_Event& e)
             printf("mouse : %s, keyboard: %s\n",
                 mouse_focus ? "On" : "Off",
                 keyb_focus ? "on" : "Off");
-        }
-    }
-
-    // exit fullscreen
-    else if ( e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_RETURN)
-    {
-        if (fullscreen)
-        {
-            SDL_SetWindowFullscreen(window, SDL_FALSE);
-            fullscreen = false;
-        }
-        else
-        {
-            SDL_SetWindowFullscreen(window, SDL_TRUE);
-            fullscreen = true;
-            minimized = false;
         }
     }
 }
