@@ -19,7 +19,6 @@ int main()
 
     // Texture Wrapper
     TextureWrapper text_line;
-    TextureWrapper time_panel;
 
     // string
     std::stringstream time_text;
@@ -82,7 +81,8 @@ int main()
     SDL_RenderClear(base_render);
     
     // add an text
-    text_line.loadFromText(&base_render, &base_font, "Night Class Room", TTF_COLOR_BLACK); 
+    text_line.loadFromText(&base_render, &base_font, "TextBoard", TTF_COLOR_BLACK); 
+
 
     while(!quit)
     {
@@ -101,12 +101,6 @@ int main()
             SCREEN_HEIGHT / 5
         );
 
-        // render time panel
-        time_text.str("");
-        time_text << "Stop Watcher Walk Time : " << (global_timer.getTicks() / 1000.f );
-        time_panel.loadFromText(&base_render, &base_font, time_text.str().c_str(), TTF_COLOR_BLACK);
-        time_panel.render(&base_render, SCREEN_WIDTH / 5 * 2, 0);
-
         // render clip
         SDL_RenderPresent(base_render);
             // Clear Screen
@@ -117,8 +111,6 @@ int main()
     // close and clean
     // clean
     text_line.freeTexture();
-    time_panel.freeTexture();
-    //sprite.freeSprite();
     SDL_DestroyRenderer( base_render );
     SDL_DestroyWindow( base_window );
 
