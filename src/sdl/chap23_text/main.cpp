@@ -17,11 +17,6 @@ int main()
     base_render = NULL;
     base_font = NULL;
 
-    // Texture Wrapper
-    TextureWrapper text_line;
-
-    // string
-    std::stringstream time_text;
 
     // init 
     if(!Init_SDL_lib())
@@ -79,38 +74,108 @@ int main()
     // Clear Screen
     SDL_SetRenderDrawColor(base_render, 0xFF, 0xFF, 0xFF, 0xFF);
     SDL_RenderClear(base_render);
+
+    // Texture Wrapper
+    TextureWrapper text_line;
+    TextureWrapper text_title;
+
+    text_title.loadFromText(&base_render, &base_font, "Text Board", TTF_COLOR_BLACK);
+    
     
     // add an text
-    text_line.loadFromText(&base_render, &base_font, "TextBoard", TTF_COLOR_BLACK); 
+    std::string textboard_string = "Input Here...";
+    text_line.loadFromText(&base_render, &base_font, textboard_string.c_str(), TTF_COLOR_BLACK); 
+
+    
+    // start text input
+    SDL_StartTextInput();
 
 
     while(!quit)
     {
+        bool render_text_flag = false;
         while(SDL_PollEvent(&e) != 0)
         {
             if (e.type == SDL_QUIT)
                 quit = true;
+            
+            else if (e.type == SDL_KEYDOWN)
+            {
+                // BackSpace Delete
+                if (e.key.keysym.sym == SDLK_BACKSPACE && textboard_string.length() > 0)
+                {
+                    textboard_string.pop_back();
+                    render_text_flag = true;
+                }
+
+                // copy clipboard ctrl+C
+                else if (e.key.keysym.sym == SDLK_c && SDL_GetModState() & KMOD_CTRL)
+                {
+                    SDL_SetClipboardText(textboard_string.c_str());
+                }
+
+                // paste ctrl+V
+                else if (e.key.keysym.sym == SDLK_v && SDL_GetModState() & KMOD_CTRL)
+                {
+                    textboard_string = SDL_GetClipboardText();
+                    render_text_flag = true;
+                }
+            }
+
+
+            // handle input
+            else if (e.type == SDL_TEXTINPUT)
+            {
+                // exclude the ctrl+c and ctrl+v
+                if(!(SDL_GetModState() & KMOD_CTRL && (e.text.text[0] == 'c' || e.text.text[0] == 'C' || e.text.text[0] == 'v' || e.text.text[0] == 'V' )))
+                {
+                    textboard_string += e.text.text;
+                    render_text_flag = true;
+                }
+            }
         }
 
         // after poll , the key state will be refresh
 
-        // render text
+
+        if (render_text_flag)
+        {
+            if (textboard_string != "")
+                text_line.loadFromText(&base_render, &base_font, textboard_string.c_str(), TTF_COLOR_BLACK);
+            
+            //render empty text
+            else
+                text_line.loadFromText(&base_render, &base_font, " ", TTF_COLOR_BLACK);
+        }
+
+        // Clear Screen
+        SDL_SetRenderDrawColor(base_render, 0xFF, 0xFF, 0xFF, 0xFF);
+        SDL_RenderClear(base_render);
+
+        
+        // render text title
+        text_title.render(
+            &base_render,
+            SCREEN_WIDTH / 3,
+            SCREEN_HEIGHT / 10
+        );
+
+        // render text board
         text_line.render(
             &base_render,
             0,
             SCREEN_HEIGHT / 5
         );
-
-        // render clip
+        
+        // update screen
         SDL_RenderPresent(base_render);
-            // Clear Screen
-        SDL_SetRenderDrawColor(base_render, 0xFF, 0xFF, 0xFF, 0xFF);
-        SDL_RenderClear(base_render);
     }
 
+    SDL_StopTextInput();
     // close and clean
     // clean
     text_line.freeTexture();
+    text_title.freeTexture();
     SDL_DestroyRenderer( base_render );
     SDL_DestroyWindow( base_window );
 
