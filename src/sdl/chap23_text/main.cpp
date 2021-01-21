@@ -48,7 +48,7 @@ int main()
     }
 
     // create font
-    if( !Create_ttf_font(&base_font, "rsrc/lazy.ttf", 28) )
+    if( !Create_ttf_font(&base_font, "rsrc/alex-Italic.ttf", 28) )
     {
         printf("Failed to load ttf font file\n");
         SDL_DestroyWindow(base_window);
@@ -120,6 +120,30 @@ int main()
                     textboard_string = SDL_GetClipboardText();
                     render_text_flag = true;
                 }
+
+                // save to file ctrl+S
+                else if (e.key.keysym.sym == SDLK_s && SDL_GetModState() & KMOD_CTRL)
+                {
+                    SDL_RWops *file = SDL_RWFromFile("last.log", "w+");
+                    if (file == NULL)
+                    {
+                        printf("Unable to open as write : %s\n", SDL_GetError());
+                        continue;
+                    }
+                    SDL_RWwrite(
+                        file, 
+                        textboard_string.c_str(), 
+                        sizeof(char), 
+                        textboard_string.length());
+                    SDL_RWclose(file);
+                }
+
+                else if (e.key.keysym.sym == SDLK_RETURN)
+                {
+                    textboard_string += "\n";
+                    render_text_flag = true;
+                    printf("Enter pressed\n");
+                }
             }
 
 
@@ -127,7 +151,11 @@ int main()
             else if (e.type == SDL_TEXTINPUT)
             {
                 // exclude the ctrl+c and ctrl+v
-                if(!(SDL_GetModState() & KMOD_CTRL && (e.text.text[0] == 'c' || e.text.text[0] == 'C' || e.text.text[0] == 'v' || e.text.text[0] == 'V' )))
+                if(!(SDL_GetModState() & KMOD_CTRL && 
+                        (e.text.text[0] == 'c' || 
+                        e.text.text[0] == 'C' || 
+                        e.text.text[0] == 'v' || 
+                        e.text.text[0] == 'V' )))
                 {
                     textboard_string += e.text.text;
                     render_text_flag = true;

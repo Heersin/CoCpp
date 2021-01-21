@@ -69,6 +69,7 @@ bool TextureWrapper::loadFromText(SDL_Renderer **pr,TTF_Font **pfont, std::strin
             break;
     }
 
+
     SDL_Surface *text_surface = TTF_RenderText_Solid( *pfont, text.c_str(), text_color );
 
     if (text_surface == NULL)
