@@ -20,6 +20,7 @@
 #include "base_com/timer.h"
 #include "components/role.h"
 #include "components/focusBackground.h"
+#include "window.h"
 
 // MACRO
 #define SDL_LIB_MAIN_INIT 1
